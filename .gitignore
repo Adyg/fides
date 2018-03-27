@@ -49,3 +49,6 @@ Desktop.ini
 
 # SASS
 .sass-cache
+
+#Bower
+bower_components
