@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
+
+from fides.views import mockup as mockup_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+
+    ## MOCKUP
+    path('', mockup_views.mockup_login, name='login'),
+    path('dashboard/', mockup_views.mockup_dashboard, name='dashboard'),
+    ## END MOCKUP
+
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
