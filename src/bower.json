@@ -1,0 +1,9 @@
+{
+  "name": "myproject-name",
+  "version": "0.0.1",
+  "dependencies": {
+    "gentelella": "~1.4.0",
+    "jquery": "~1.10.2"
+  },
+  "private": true
+}

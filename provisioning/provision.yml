@@ -1,0 +1,81 @@
+- hosts: all
+  user: "{{ client_user }}"
+
+  vars_files:
+    - vars/main.yml  
+
+  tasks:
+  - name: ensure apt cache is up to date
+    apt: update_cache=yes
+
+  - name: install the locales package
+    apt: pkg=locales state=present
+
+  - name: ensure the en_US locale exists
+    locale_gen: name=en_US.UTF-8 state=present
+
+  - name: set the locale
+    command: /usr/sbin/update-locale LANG=en_US.UTF-8 --reset
+
+  - name: Create a login user
+    user:
+      name: fides
+      password: 'fides'
+      groups:
+        - sudo
+        - www-data
+      state: present
+      createhome: yes
+      home: /home/fides
+
+  - name: Installing repo for Java 8 in Ubuntu
+    become: true
+    apt_repository: 
+      repo: 'ppa:openjdk-r/ppa'
+      state: present
+
+  - name: ensure packages are installed
+    apt: name={{ item }}
+    with_items:
+        - make
+        - build-essential
+        - git
+        - python3
+        - python3-pip
+        - python-pip
+        - libpq-dev
+        - python3-dev
+        - python-psycopg2
+        - supervisor
+
+  - name: Install Python packages
+    command: pip3 install -r /home/fides/src/requirements.txt
+
+- hosts: all
+  user: "{{ client_user }}"
+
+  vars_files:
+    - vars/main.yml  
+
+  roles:
+    - geerlingguy.supervisor
+    - geerlingguy.nodejs
+    - role: geerlingguy.java
+      when: "ansible_os_family == 'Debian'"
+      java_packages:
+       - openjdk-8-jdk    
+    - selenium
+    - geerlingguy.postgresql
+    - jdauphant.nginx
+
+  tasks:
+  - name: supervisorctl reread configs
+    command: supervisorctl reread
+
+  - name: supervisorctl update configs
+    command: supervisorctl update
+
+  - name: restart supervisorctl 
+    supervisorctl:
+      name: guni:gunicorn
+      state: restarted

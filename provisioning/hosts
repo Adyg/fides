@@ -1,0 +1,5 @@
+[test_runners]
+178.62.237.109
+
+[test_runners:vars]
+ansible_python_interpreter=/usr/bin/python3

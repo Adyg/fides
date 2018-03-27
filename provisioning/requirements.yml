@@ -1,0 +1,18 @@
+---
+- role: geerlingguy.java
+  src: geerlingguy.java
+
+- role: geerlingguy.supervisor
+  src: geerlingguy.supervisor
+
+- role: selenium
+  src: https://github.com/arknoll/ansible-role-selenium/archive/master.tar.gz
+
+- role: jdauphant.nginx
+  src: jdauphant.nginx
+
+- role: geerlingguy.postgresql
+  src: geerlingguy.postgresql
+
+- role: geerlingguy.nodejs
+  src: geerlingguy.nodejs

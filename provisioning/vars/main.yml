@@ -1,0 +1,55 @@
+---
+project_name: testrunner1
+client_user: root
+
+selenium_version: 3.8.1
+selenium_install_firefox: yes
+
+#nginx
+nginx_user: "www-data"
+nginx_events_params:
+ - worker_connections 512
+ - debug_connection 127.0.0.1
+ - use epoll
+ - multi_accept on
+nginx_sites:
+ default:
+     - listen 8001
+     - server_name _
+     - location / { 
+        include proxy_params; 
+        proxy_pass http://unix:/tmp/fides.sock; 
+       }
+
+#postgresql
+postgresql_python_library: python3-psycopg2
+postgresql_databases:
+  - name: fides
+postgresql_users:
+  - name: fides
+    password: fides
+    db: fides  
+
+
+#supervisor
+supervisor_programs:
+  - name: 'gunicorn'
+    command: gunicorn --workers 3 --bind unix:/tmp/fides.sock fides.wsgi:application 
+    state: present
+    configuration: |
+      directory=/home/fides/src
+      autostart=true 
+      autorestart=true 
+      stderr_logfile=/home/fides/log/gunicorn.out.log 
+      stdout_logfile=/home/fides/log/gunicorn.err.log 
+      user=root 
+      group=www-data 
+      environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8
+      
+      [group:guni] 
+      programs=gunicorn
+
+#nodejs
+nodejs_version: '6.x'
+nodejs_npm_global_packages:
+  - name: bower
