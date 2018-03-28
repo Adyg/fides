@@ -18,7 +18,7 @@ nginx_sites:
      - server_name _
      - location / { 
         include proxy_params; 
-        proxy_pass http://unix:/tmp/fides.sock; 
+        proxy_pass http://unix:/var/tmp/fides.sock; 
        }
 
 #postgresql
@@ -34,7 +34,7 @@ postgresql_users:
 #supervisor
 supervisor_programs:
   - name: 'gunicorn'
-    command: gunicorn --workers 3 --bind unix:/tmp/fides.sock fides.wsgi:application 
+    command: gunicorn --workers 3 --bind unix:/var/tmp/fides.sock fides.wsgi:application 
     state: present
     configuration: |
       directory=/home/fides/src

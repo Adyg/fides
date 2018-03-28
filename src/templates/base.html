@@ -22,6 +22,9 @@
 
     <!-- Custom Theme Style -->
     <link href="{% static 'bower_components/gentelella/build/css/custom.min.css' %}" rel="stylesheet">
+    
+    {% block extra_stylesheets %}
+    {% endblock extra_stylesheets %}    
   </head>
 
   <body class="nav-md">
@@ -34,6 +37,22 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>{% block page_title %}{% endblock page_title %}</h3>
+              </div>
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>  
+            <div class="clearfix"></div>
             {% block content %}{% endblock content %}
           </div>
         </div>
@@ -53,6 +72,11 @@
     <script src="{% static 'bower_components/gentelella/vendors/nprogress/nprogress.js' %}"></script>
     <!-- bootstrap-progressbar -->
     <script src="{% static 'bower_components/gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
+    <!-- jQuery Smart Wizard -->
+    <script src="{% static 'bower_components/gentelella/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js' %}"></script>
+
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
 
     <!-- Custom Theme Scripts -->
     <script src="{% static 'bower_components/gentelella/build/js/custom.min.js' %}"></script>

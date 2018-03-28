@@ -11,4 +11,10 @@ def mockup_login(request):
 def mockup_dashboard(request):
 
     return render(request, 'mockup/dashboard.html', {
-    })    
+    })
+
+
+def mockup_add_project(request):
+
+    return render(request, 'mockup/add_project.html', {
+    })
