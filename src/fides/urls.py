@@ -28,6 +28,7 @@ urlpatterns = [
     path('dashboard/', mockup_views.mockup_dashboard, name='dashboard'),
     path('add/project/', mockup_views.mockup_add_project, name='add-project'),
     path('project/dashboard', mockup_views.mockup_project_dashboard, name='project-dashboard'),
+    path('project/dashboard/visual', mockup_views.mockup_project_dashboard_visual, name='project-dashboard-visual'),
     ## END MOCKUP
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

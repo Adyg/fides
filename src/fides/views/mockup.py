@@ -23,4 +23,10 @@ def mockup_add_project(request):
 def mockup_project_dashboard(request):
 
     return render(request, 'mockup/project_dashboard.html', {
-    })    
+    })
+
+
+def mockup_project_dashboard_visual(request):
+
+    return render(request, 'mockup/project_dashboard_visual.html', {
+    })        
