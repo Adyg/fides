@@ -58,6 +58,7 @@
     - vars/main.yml  
 
   roles:
+    - geerlingguy.ruby
     - geerlingguy.supervisor
     - geerlingguy.nodejs
     - role: geerlingguy.java

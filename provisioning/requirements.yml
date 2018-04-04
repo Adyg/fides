@@ -16,3 +16,6 @@
 
 - role: geerlingguy.nodejs
   src: geerlingguy.nodejs
+
+- role: geerlingguy.ruby   
+  src: geerlingguy.ruby  

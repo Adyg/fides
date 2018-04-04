@@ -29,4 +29,10 @@ def mockup_project_dashboard(request):
 def mockup_project_dashboard_visual(request):
 
     return render(request, 'mockup/project_dashboard_visual.html', {
-    })        
+    })
+
+
+def mockup_visual_consistency_page(request):
+
+    return render(request, 'mockup/visual_consistency_page.html', {
+    })            

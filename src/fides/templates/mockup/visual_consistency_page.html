@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block page_title %}Visual consistency{% endblock page_title %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Compare state across time</h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+          <div class="col-md-12">
+            <label>Resolution</label>
+            <select>
+              <option>300x460</option>
+              <option>800x1200</option>
+              <option>1440x1360</option>
+            </select>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6 visual-compare">
+            <h2>Reference</h2>
+            <fieldset>
+              <div class="control-group">
+                <div class="controls">
+                  <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+                    <input type="text" class="form-control has-feedback-left datetime-picker" placeholder="Date" aria-describedby="inputSuccess2Status2">
+                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
+            </fieldset>             
+            <img src="{% static 'images/placeholder_1.png' %}">
+          </div>    
+          <div class="col-md-6 col-sm-6 col-xs-6 visual-compare">
+            <h2>Test</h2>
+            <fieldset>
+              <div class="control-group">
+                <div class="controls">
+                  <div class="col-md-11 xdisplay_inputx form-group has-feedback">
+                    <input type="text" class="form-control has-feedback-left datetime-picker" placeholder="Date" aria-describedby="inputSuccess2Status2">
+                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
+            </fieldset>            
+            <img src="{% static 'images/placeholder_2.png' %}">
+          </div>    
+        </div>
+    </div>
+  </div>
+</div>     
+{% endblock content %}
+{% block extra_stylesheets %}
+    <!-- iCheck -->
+    <link href="{% static 'bower_components/gentelella/vendors/iCheck/skins/flat/green.css' %}" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="{% static 'bower_components/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bower_components/gentelella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bower_components/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bower_components/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bower_components/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css' %}" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="{% static 'bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet">    
+{% endblock extra_stylesheets %}
+
+{% block extra_scripts %}
+    <!-- iCheck -->
+    <script src="{% static 'bower_components/gentelella/vendors/iCheck/icheck.min.js' %}"></script>
+    <!-- Datatables -->
+    <script src="{% static 'bower_components/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/datatables.net-buttons/js/buttons.print.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/datatables.net-scroller/js/dataTables.scroller.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/jszip/dist/jszip.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/pdfmake/build/pdfmake.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/pdfmake/build/vfs_fonts.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/moment/min/moment.min.js' %}"></script>
+    <script src="{% static 'bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js' %}"></script>    
+{% endblock extra_scripts %}

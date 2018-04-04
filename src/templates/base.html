@@ -25,6 +25,9 @@
     
     {% block extra_stylesheets %}
     {% endblock extra_stylesheets %}    
+
+    <!-- Custom Theme Style -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">    
   </head>
 
   <body class="nav-md">
@@ -80,5 +83,7 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{% static 'bower_components/gentelella/build/js/custom.min.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>
