@@ -80,3 +80,17 @@
     supervisorctl:
       name: guni:gunicorn
       state: restarted
+
+- hosts: all
+  user: fides
+
+  tasks:
+  - name: Django migrations
+    shell:
+      cmd: python3 manage.py migrate
+      chdir: /home/fides/src
+
+  - name: Django collectstatic
+    shell:
+      cmd: python3 manage.py collectstatic --noinput
+      chdir: /home/fides/src

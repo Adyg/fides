@@ -49,6 +49,8 @@ supervisor_programs:
       
       [group:guni] 
       programs=gunicorn
+supervisor_user: root
+supervisor_password: 'root'
 
 #nodejs
 nodejs_version: '6.x'
