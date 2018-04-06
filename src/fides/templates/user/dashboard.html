@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block page_title %}Projects{% endblock page_title %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Projects</h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+
+        <p><a href="{% url 'add-project' %}" class="btn btn-sm btn-primary">Add project</a></p>
+
+        <!-- start project list -->
+        <table class="table table-striped projects">
+          <thead>
+            <tr>
+              <th style="width: 1%">#</th>
+              <th style="width: 20%">Project Name</th>
+              <th>Project Health</th>
+              <th>Team Members</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for project in projects %}
+              <tr>
+                <td>#</td>
+                <td>
+                  {% include 'partials/_project_link.html' with project=project %}
+                  <br />
+                  <small>Created {% include 'partials/_project_created_at.html' with project=project %}</small>
+                </td>
+                <td class="project_progress">
+                  <div class="progress progress_sm">
+                    <div class="progress-bar bg-orange" role="progressbar" data-transitiongoal="57"></div>
+                  </div>
+                  <small>Tolerable</small>
+                </td>
+                <td>
+                  <ul class="list-inline">
+                    <li>
+                      <img src="{% static 'bower_components/gentelella/production/images/user.png' %}" class="avatar" alt="Avatar">
+                    </li>
+                    <li>
+                      <img src="{% static 'bower_components/gentelella/production/images/user.png' %}" class="avatar" alt="Avatar">
+                    </li>
+                    <li>
+                      <img src="{% static 'bower_components/gentelella/production/images/user.png' %}" class="avatar" alt="Avatar">
+                    </li>
+                    <li>
+                      <img src="{% static 'bower_components/gentelella/production/images/user.png' %}" class="avatar" alt="Avatar">
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <!-- end project list -->
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
