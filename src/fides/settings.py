@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'bootstrap3',
+
     'fides',
 ]
 
@@ -134,3 +136,7 @@ STATICFILES_FINDERS = (
 
 
 LOGIN_REDIRECT_URL = 'dashboard'
+
+BOOTSTRAP3 = {
+    'horizontal_field_class': 'col-md-6',
+}

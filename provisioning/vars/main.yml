@@ -20,6 +20,7 @@ nginx_sites:
      - location / { 
         include proxy_params; 
         proxy_pass http://unix:/var/run/fides.sock; 
+        sendfile off;
        }
 
 #postgresql

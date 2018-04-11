@@ -1,0 +1,12 @@
+{% extends 'project/create_project.html' %}
+{% load static %}
+
+{% block 'wizard-step' %}
+    {% include 'project/wizard/_steps_list.html' with active_step='5' %}
+    <div id="step-5">
+        <h2 class="StepTitle">Building initial database</h2>
+        <p>Please wait while we parse the pages and build an initial database.</p>
+        <p>This process will take a while, feel free to close the browser window. You will be notified when this process finishes.</p>
+        <p class="mid_center"><img src="{% static 'images/loader.svg' %}"></p>
+    </div>
+{% endblock 'wizard-step' %}

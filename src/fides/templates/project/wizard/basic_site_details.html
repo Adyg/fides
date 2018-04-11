@@ -1,0 +1,15 @@
+{% extends 'project/create_project.html' %}
+
+{% load bootstrap3 %}
+
+{% block 'wizard-step' %}
+  {% include 'project/wizard/_steps_list.html' with active_step='1' %}
+  <div id="step-1">
+
+    <form class="form-horizontal form-label-left" method="POST">
+      {% csrf_token %}
+      {% bootstrap_form form layout="horizontal" %}
+      {% include 'project/wizard/_step_submit.html' %}
+    </form>
+  </div>
+{% endblock 'wizard-step' %}
