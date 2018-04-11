@@ -8,6 +8,9 @@ selenium_install_firefox: yes
 
 #nginx
 nginx_user: "www-data"
+nginx_sendfile: "off"
+nginx_tcp_nopush: "off"
+nginx_tcp_nodelay: "off"
 nginx_events_params:
  - worker_connections 512
  - debug_connection 127.0.0.1

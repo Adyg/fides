@@ -35,9 +35,9 @@ var Fides = {};
         var $selectedInputs = $container.find('input[name="'+tableRecordsName+'"]:checked'),
             tableRecordIds = [],
             commaSeparatedTableRecordIds = '';
-        console.log($selectedInputs);
-        $selectedInputs.each(function($element){
-          tableRecordIds.push($element.val());
+
+        $selectedInputs.each(function(it){
+          tableRecordIds.push($(this).val());
         });
 
         commaSeparatedTableRecordIds = tableRecordIds.join(',');
