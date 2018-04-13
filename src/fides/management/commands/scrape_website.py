@@ -17,20 +17,22 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.project = Project.get_project_for_scraping()
+        self.project.mark_scraping_started()
 
         if self.project:
             self.urls.append(self.project.url)
 
         self.crawl()
+        self.project.mark_scraping_finished()
 
 
     def crawl(self):
         while self.urls:
             url = self.urls.pop()
             url = self.make_url_absolute(url)
-            is_url_stored = ProjectPage.create(self.project, url)
+            store_url = ProjectPage.create(self.project, url)
 
-            if is_url_stored:
+            if store_url:
                 self.explore_url(url)
 
 

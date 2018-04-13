@@ -2,3 +2,9 @@
 .visual-compare img {
   display: block;
   width: 100%; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/fides\/src\/static\/sass\/main\.scss}line{font-family:\000038}}
+.formset-item {
+  padding: 25px 0;
+  margin: 25px 0;
+  border-bottom: 1px solid #ccc; }

@@ -4,7 +4,7 @@
   {% include 'project/wizard/_steps_list.html' with active_step='2' %}
   <div id="step-2">
     <h2 class="StepTitle">Step 2 Content</h2>
-    {% if project.status == 'U' %}
+    {% if not project.is_scraped %}
       <div class="state-1">
           <p>
             Scraping website pages. This will take a while, we'll notify you via your preffered communication method when it's done.
@@ -62,6 +62,9 @@
               </table>
             </div>
           </div>
+          <div class="actionBar">
+            <a href="{% url 'wizard-project-add-pages' project_codename=project.codename %}" class="buttonNext btn btn-success">Next</a>
+          </div>          
         </div>                
       </div>
     {% endif %}

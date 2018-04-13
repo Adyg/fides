@@ -39,8 +39,8 @@ urlpatterns = [
     path('dashboard/', user_views.dashboard, name='dashboard'),
     path('wizard/project/basic-site-details/', project_views.wizard_project_basic_site_details, name='wizard-project-basic-site-details'),
     path('wizard/project/scrape-site/<str:project_codename>', project_views.wizard_project_scrape_site, name='wizard-project-scrape-site'),
-    path('wizard/project/add-pages/', project_views.wizard_project_add_pages, name='wizard-project-add-pages'),
-    path('wizard/project/visual-assesment/', project_views.wizard_project_visual_assesment, name='wizard-project-visual-assesment'),
+    path('wizard/project/add-pages/<str:project_codename>', project_views.wizard_project_add_pages, name='wizard-project-add-pages'),
+    path('wizard/project/visual-assesment/<str:project_codename>', project_views.wizard_project_visual_assesment, name='wizard-project-visual-assesment'),
     path('wizard/project/build-dataset/', project_views.wizard_project_build_dataset, name='wizard-project-build-dataset'),
 
     path('project/page/delete/', project_views.delete_page, name='delete-page'),

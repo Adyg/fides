@@ -49,10 +49,48 @@ var Fides = {};
     bulkDelete();
   };
 
+
+  /**
+  * Handles creating formset items
+  *
+  */
+  Fides.formset = function($formset, prefix) {
+    console.log('formset');
+    var cloneFormset = function($formset, prefix) {
+      console.log('clone formset');
+      var $trigger = $formset.find('.add-formset-item'),
+          $formsetItem = $formset.find('.formset-item:last');
+
+      $trigger.on('click', function(){
+        console.log('click');
+        var $newElement = $formsetItem.clone(true),
+            $inputTotal = $('#id_' + prefix + '-TOTAL_FORMS'),
+            total = $inputTotal.val();
+
+        $newElement.find(':input').each(function() {
+            var name = $(this).attr('name').replace('-' + (total-1) + '-', '-' + total + '-');
+            var id = 'id_' + name;
+            $(this).attr({'name': name, 'id': id}).val('').removeAttr('checked');
+        });
+
+        total++;
+        $inputTotal.val(total);
+
+        $formsetItem.after($newElement);
+
+        return false;
+      });
+    }
+
+    cloneFormset($formset, prefix);
+  }
+
+
   /**
   * Inits
   */
   Fides.initDatePicker($('.datetime-picker'));
   Fides.datatableActions($('table.bulk_action'));
+  Fides.formset($('#previsual-assesment-formset'), 'form');
 
 }(jQuery));

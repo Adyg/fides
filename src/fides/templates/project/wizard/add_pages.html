@@ -8,13 +8,13 @@
         Add URLs to pages that were not found in the previous step. 
         One URL per line.
     </p>
-    <form class="form-horizontal form-label-left">
-
+    <form class="form-horizontal form-label-left" method="POST">
+      {% csrf_token %}
       <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">URLs
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <textarea class="form-control" rows="3"></textarea>
+            <textarea class="form-control" rows="3" name="urls"></textarea>
         </div>
       </div>
       {% include 'project/wizard/_step_submit.html' %}

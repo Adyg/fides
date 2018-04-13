@@ -12,17 +12,21 @@ class Breakpoint(models.Model):
 
 
 class Project(models.Model):
-    STATUS_CHOICES = (
-        ('U', 'Unscraped'),
+    WIZARD_STEPS = (
+        ('BSD', 'Basic Site Details'),
+        ('SS', 'Scraping Started'),
         ('S', 'Scraped'),
-    )    
+        ('AP', 'Add Pages'),
+        ('PVA', 'Pre-Visual Assesment'),
+        ('BID', 'Building Initial Dataset')
+    )
 
     name = models.CharField(max_length=100, blank=False, null=False)
     url = models.URLField(blank=False, null=False)
     description = models.TextField(blank=False, null=False)
     breakpoint = models.ManyToManyField(Breakpoint)
     created_at = models.DateTimeField(default=timezone.now)
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='U')
+    wizard_step = models.CharField(max_length=10, choices=WIZARD_STEPS, default='BSD')
     codename = models.CharField(max_length=10, blank=False, null=False, unique=True)
 
     def __str__(self):
@@ -31,11 +35,37 @@ class Project(models.Model):
 
     @classmethod
     def get_project_for_scraping(cls):
-        project = cls.objects.filter(status='U')[:1]
+        project = cls.objects.filter(wizard_step='BSD')[:1]
         if project: 
             return project[0]
 
         return False
+
+
+    def is_scraped(self):
+
+        return self.wizard_step in ['S', 'AP', 'PVA', 'BID']
+
+
+    def mark_scraping_started(self):
+        self.wizard_step = 'SS'
+        self.save()
+
+
+    def mark_scraping_finished(self):
+        self.wizard_step = 'S'
+        self.save()
+
+
+    def bulk_add_pages(self, urls):
+        if isinstance(urls, str):
+            urls = urls.split('\n')
+
+        for url in urls:
+            self.add_page(url)
+
+    def add_page(self, url):
+        ProjectPage.create(self, url)
 
 
 class ProjectPage(models.Model):
@@ -62,3 +92,12 @@ class ProjectPage(models.Model):
         return False
 
 
+class ProjectPagePrevisualAssesment(models.Model):
+    url_pattern = models.TextField(blank=False, null=False)
+    js_code = models.TextField(blank=False, null=False)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True, null=True)
+    test_original = models.BooleanField(default=True)
+
+    def __str__(self):
+
+        return "{} - {}".format(self.project.name, self.url_pattern)

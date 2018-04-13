@@ -1,30 +1,23 @@
 {% extends 'project/create_project.html' %}
 
+{% load bootstrap3 %}
+
 {% block 'wizard-step' %}
   {% include 'project/wizard/_steps_list.html' with active_step='4' %}
   <div id="step-4">
     <h2 class="StepTitle">Pre-visual assesment</h2>
     <p>Javascript code to be executed in the browser, before the visual assesment.
     </p>
-    <form class="form-horizontal form-label-left">
-
-      <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">URL Patterns
-        </label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            <textarea class="form-control" rows="3"></textarea>
+    
+    <form class="form-horizontal form-label-left" id="previsual-assesment-formset" method="POST">
+      {{ previsual_assesment_formset.management_form }}
+      {% csrf_token %}
+      {% for form in previsual_assesment_formset %}
+        <div class="formset-item">
+          {% bootstrap_form form layout="horizontal" %}
         </div>
-      </div>
-
-
-      <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">JS Code
-        </label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            <textarea class="form-control" rows="3"></textarea>
-        </div>
-      </div>
-      <button type="button" class="btn btn-primary">+</button>
+      {% endfor %}
+      <button type="button" class="btn btn-primary add-formset-item">+</button>
       {% include 'project/wizard/_step_submit.html' %}
     </form>            
   </div>
