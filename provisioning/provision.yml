@@ -49,6 +49,8 @@
         - supervisor
 
   - name: Install Python packages
+    become: true
+    become_user: root
     command: pip3 install -r /home/fides/src/requirements.txt
 
 - hosts: all
