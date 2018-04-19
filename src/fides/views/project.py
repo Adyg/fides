@@ -61,7 +61,7 @@ def wizard_project_visual_assesment(request, project_codename):
                 previsual_assesment.project = project
                 previsual_assesment.save()
 
-                return redirect(reverse('wizard-project-build-dataset'))  
+            return redirect(reverse('wizard-project-build-dataset'))  
 
     return render(request, 'project/wizard/visual_assesment.html', {
         'previsual_assesment_formset': previsual_assesment_formset,
